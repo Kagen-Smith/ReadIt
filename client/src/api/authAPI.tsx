@@ -1,4 +1,4 @@
-import { UserLogin } from "../interfaces/userLogin";
+import { UserLogin } from "../interfaces/userLogin.tsx";
 
 const login = async (userInfo: UserLogin) => {
   const response = await fetch('/api/auth/login', {
@@ -13,3 +13,4 @@ const login = async (userInfo: UserLogin) => {
 
 
 export { login };
+// auth api
