@@ -1,21 +1,16 @@
-import { Outlet } from 'react-router-dom';
-import Header from './pages/header';
-import Footer from './pages/footer';
-
+import { Outlet } from "react-router-dom";
+import Header from "./pages/header";
+import Footer from "./pages/footer";
 
 function App() {
   return (
-    <main>
-      <div>
-        <Header />
-      </div>
-      <div>
+    <div className="d-flex flex-column min-vh-100">
+      <Header />
+      <main className="flex-grow-1">
         <Outlet />
-      </div>
-      <div>
-        <Footer />
-      </div>
-    </main>
+      </main>
+      <Footer />
+    </div>
   );
 }
 
