@@ -13,7 +13,6 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    console.log(loginCheck);
     checkLogin();
   }, [loginCheck]);
 
@@ -39,25 +38,39 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="mainMenu">
           <ul className="navbar-nav ms-auto mb-2 mb-xl-0">
+            <li className="nav-item">
+              <Link to="/" className="nav-link h5">
+                Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/UserPage" className="nav-link h5">
+                My Account
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/BookPage" className="nav-link h5">
+                Book Page
+              </Link>
+            </li>
+
             {!loginCheck ? (
               <li className="nav-item">
-                <Link to="/login">
-                  <button type="button" className="btn btn-primary">
-                    Login
-                  </button>
+                <Link to="/login" className="nav-link h5 disabled">
+                  Login
                 </Link>
               </li>
             ) : (
               <li className="nav-item">
-                <button
-                  type="button"
-                  className="btn btn-primary"
+                <Link
+                  to="/"
+                  className="nav-link h5"
                   onClick={() => {
                     auth.logout();
                   }}
                 >
                   Logout
-                </button>
+                </Link>
               </li>
             )}
           </ul>
@@ -68,5 +81,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-//navbar for the page
