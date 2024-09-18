@@ -8,8 +8,8 @@ import App from "./App";
 import ErrorPage from "./pages/errorPage.tsx";
 import Home from "./pages/home.tsx";
 // import Login from "./pages/login.tsx";
-// import UserPage from "./pages/userpage.tsx";
-// import PLACEHOLDER from "./pages/TBD";
+import UserPage from "./pages/userpage.tsx";
+import BookPage from "./pages/bookPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -25,14 +25,14 @@ const router = createBrowserRouter([
       //   path: "login",
       //   element: <Login />,
       // },
-      // {
-      //   path: "userpage",
-      //   element: <UserPage />,
-      // },
-      // {
-      //   path: "TBD",
-      //   element: <PLACEHOLDER />,
-      // },
+      {
+        path: "userPage",
+        element: <UserPage />,
+      },
+      {
+        path: "bookPage",
+        element: <BookPage />,
+      },
     ],
   },
 ]);
