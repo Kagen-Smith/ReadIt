@@ -1,90 +1,6 @@
-// import { useState, useEffect } from "react";
-// import { Link } from "react-router-dom";
-// import HorizontalLogo from "../assets/baseLogoHorizontal.png";
-// import auth from "../utils/auth";
-
-// const Navbar = () => {
-//   const [loginCheck, setLoginCheck] = useState(false);
-
-//   const checkLogin = () => {
-//     if (auth.loggedIn()) {
-//       setLoginCheck(true);
-//     }
-//   };
-
-//   useEffect(() => {
-//     checkLogin();
-//   }, [loginCheck]);
-
-//   return (
-//     <div className="navbar navbar-expand-lg mb-5 shadow bg-header">
-//       <div className="container-fluid">
-//         <img
-//           className="navbar-brand"
-//           src={HorizontalLogo}
-//           alt="ReadIt Logo"
-//           style={{ maxHeight: "145px" }}
-//         />
-//         <button
-//           className="navbar-toggler"
-//           type="button"
-//           data-bs-toggle="collapse"
-//           data-bs-target="#mainMenu"
-//           aria-controls="mainMenu"
-//           aria-expanded="false"
-//           aria-label="Toggle navigation"
-//         >
-//           <span className="navbar-toggler-icon"></span>
-//         </button>
-//         <div className="collapse navbar-collapse" id="mainMenu">
-//           <ul className="navbar-nav ms-auto mb-2 mb-xl-0 h3">
-//             <li className="nav-item">
-//               <Link to="/" className="nav-link">
-//                 Home
-//               </Link>
-//             </li>
-//             <li className="nav-item">
-//               <Link to="/UserPage" className="nav-link">
-//                 My Account
-//               </Link>
-//             </li>
-//             <li className="nav-item">
-//               <Link to="/BookPage" className="nav-link">
-//                 Book Page
-//               </Link>
-//             </li>
-
-//             {!loginCheck ? (
-//               <li className="nav-item">
-//                 <Link to="/login" className="nav-link">
-//                   Login
-//                 </Link>
-//               </li>
-//             ) : (
-//               <li className="nav-item">
-//                 <Link
-//                   to="/"
-//                   className="nav-link"
-//                   onClick={() => {
-//                     auth.logout();
-//                   }}
-//                 >
-//                   Logout
-//                 </Link>
-//               </li>
-//             )}
-//           </ul>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Navbar;
-
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import HorizontalLogo from "../assets/baseLogoHorizontal.png";
+import NavLogo from "../assets/navLogo.png";
 import auth from "../utils/auth";
 
 const shuffleArray = (array: string[]) => {
@@ -211,7 +127,7 @@ const Navbar = () => {
       >
         <img
           className="navbar-brand"
-          src={HorizontalLogo}
+          src={NavLogo}
           alt="ReadIt Logo"
           style={{ maxHeight: "145px" }}
         />
