@@ -2,27 +2,48 @@
 
 :root {
   --myFont: "Comfortaa", sans-serif;
+  --darkFontColor: #1b2541;
+  --lightFontColor: #e7e5d0;
+  --lightBackground: #f1f0e4;
 }
 
-h1 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--myFont);
   font-weight: 550;
-  color: #1b2541;
+  color: var(--darkFontColor);
 }
 
-h2 {
-  font-family: var(--myFont);
-  font-weight: 550;
-  color: #1b2541;
+.bg-header {
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.9),
+    rgba(231, 229, 208, 0.9)
+  );
+  /* url("./assets/BooksBackground.jpg"); */
+  /* background-size: cover;
+  background-position: center; */
 }
 
-h5 {
-  font-family: var(--myFont);
-  font-weight: 550;
-  color: #1b2541;
+.nav-link {
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 10px rgba(255, 255, 255, 0.6), 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+main {
+  background-color: white;
+}
+
+footer {
+  background-color: var(--lightBackground);
 }
 
 .btn-primary {
   font-family: var(--myFont);
+  color: var(--lightFontColor);
   background-color: #1b2541;
 }
