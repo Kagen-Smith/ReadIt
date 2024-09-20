@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Request } from 'express';
 
 declare global {
@@ -9,3 +10,12 @@ declare global {
     }
   }
 }
+=======
+declare namespace Express {
+    interface Request {
+        user: {
+            id: string;
+        };
+    }
+}
+>>>>>>> main
