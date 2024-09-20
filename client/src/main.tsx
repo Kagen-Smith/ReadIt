@@ -7,7 +7,7 @@ import "./index.css";
 import App from "./App";
 import ErrorPage from "./pages/errorPage.tsx";
 import Home from "./pages/home.tsx";
-// import Login from "./pages/login.tsx";
+import Login from "./pages/login.tsx";
 import UserPage from "./pages/userpage.tsx";
 import BookPage from "./pages/bookPage.tsx";
 
@@ -21,10 +21,10 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />,
       },
-      // {
-      //   path: "login",
-      //   element: <Login />,
-      // },
+      {
+        path: "login",
+        element: <Login />,
+      },
       {
         path: "userPage",
         element: <UserPage />,
@@ -32,6 +32,11 @@ const router = createBrowserRouter([
       {
         path: "bookPage",
         element: <BookPage />,
+      },
+      // Wildcard route so the Error Page is rendered in the Outlet instead of it's own separate page
+      {
+        path: "*",
+        element: <ErrorPage />,
       },
     ],
   },
