@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import NavLogo from "../assets/navLogo.png";
 import auth from "../utils/auth";
-import axios from "axios";
+import { bookCovers } from "../api/nytAPI";
 
 const shuffleArray = (array: string[]) => {
   return array.sort(() => Math.random() - 0.5);
@@ -60,20 +60,6 @@ const Navbar = () => {
   //   "https://storage.googleapis.com/du-prd/books/images/9780670785933.jpg",
   // ];
 
-  useEffect(() => {
-    const fetchBookCovers = async () => {
-      try {
-        const response = await axios.get("/api/book-covers");
-        const covers = response.data;
-        setShuffledImages(shuffleArray(covers));
-      } catch (error) {
-        console.error("Error fetching book covers:", error);
-      }
-    };
-
-    fetchBookCovers();
-  }, [location]);
-
   const location = useLocation();
 
   const checkLogin = () => {
@@ -87,8 +73,12 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    const shuffled = shuffleArray([...images]);
-    setShuffledImages(shuffled);
+    const fetchImages = async () => {
+      const images = await bookCovers();
+      const shuffled = shuffleArray([...images]);
+      setShuffledImages(shuffled);
+    };
+    fetchImages();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
