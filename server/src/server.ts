@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import bookRoutes from "./routes/api/book-routes.js";
-import authRoutes from "./routes/auth-routes.js";
+// import authRoutes from "./routes/auth-routes.js";
 
 dotenv.config();
 
