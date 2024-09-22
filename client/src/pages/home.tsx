@@ -1,4 +1,8 @@
 import Logo from "../assets/logoOnly.png";
+import { SearchBar } from "../components/SearchBar";
+import { SearchResultsList } from "../components/SearchResultsList";
+import { useState } from "react";
+
 // import BestSellerCards from "../components/bestSellerCard.tsx";
 
 // const bestSellers = [
@@ -12,6 +16,7 @@ import Logo from "../assets/logoOnly.png";
 // ];
 
 export default function Home() {
+  const [result, setResults] = useState([]);
   return (
     <main className="container">
       <div className="row">
@@ -35,16 +40,8 @@ export default function Home() {
         <section className="d-flex flex-column align-items-center text-center">
           <h2>Find, Organize, and Never Lose Track of a Book Again!</h2>
           <img src={Logo} alt="logo" className="my-3" />
-          <div className="input-group my-2" style={{ maxWidth: "400px" }}>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Start your journey here..."
-            />
-            <button className="btn btn-primary" type="button">
-              Search
-            </button>
-          </div>
+          <SearchBar setResults={setResults} />
+          <SearchResultsList searchResults={result} />
         </section>
       </div>
     </main>
