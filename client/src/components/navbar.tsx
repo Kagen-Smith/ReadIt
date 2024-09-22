@@ -11,7 +11,7 @@ const shuffleArray = (array: string[]) => {
 const Navbar = () => {
   const [loginCheck, setLoginCheck] = useState(false);
   const [shuffledImages, setShuffledImages] = useState<string[]>([]);
-
+  const [initialImages, setInitialImages] = useState<string[]>([]);
   const location = useLocation();
 
   const checkLogin = () => {
@@ -25,14 +25,27 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    const fetchImages = async () => {
-      const images = await bookCovers();
-      const shuffled = shuffleArray([...images]);
-      setShuffledImages(shuffled);
-    };
-    fetchImages();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location]);
+    const savedImages = localStorage.getItem("bookCovers");
+    if (savedImages) {
+      const parsedImages = JSON.parse(savedImages);
+      setInitialImages(parsedImages);
+      setShuffledImages(shuffleArray([...parsedImages]));
+    } else {
+      const fetchImages = async () => {
+        const images = await bookCovers();
+        setInitialImages(images);
+        localStorage.setItem("bookCovers", JSON.stringify(images));
+        setShuffledImages(shuffleArray([...images]));
+      };
+      fetchImages();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (initialImages.length > 0) {
+      setShuffledImages(shuffleArray([...initialImages]));
+    }
+  }, [location, initialImages]);
 
   return (
     <div
