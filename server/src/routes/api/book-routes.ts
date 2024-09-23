@@ -34,10 +34,10 @@ router.get("/book-covers", async (_req: Request, res: Response) => {
           (book: any) => book.book_image
         );
       } catch (error) {
-        console.error(
-          `Error fetching books for category ${list_name_encoded}:`,
-          error
-        );
+        // console.error(
+        //   `Error fetching books for category ${list_name_encoded}:`,
+        //   error
+        // );
         return [];
       }
     });
@@ -49,7 +49,7 @@ router.get("/book-covers", async (_req: Request, res: Response) => {
 
     res.json(allBookCovers);
   } catch (error) {
-    console.error("Error fetching book categories:", error);
+    // console.error("Error fetching book categories:", error);
     res.status(500).send("Internal Server Error");
   }
 });

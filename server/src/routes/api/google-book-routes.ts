@@ -181,20 +181,25 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const router = express.Router();
-const GOOGLE_BOOKS_API_KEY = process.env.GOOGLE_BOOKS_API_KEY;
+// const GOOGLE_BOOKS_API_KEY = process.env.GOOGLE_BOOKS_API_KEY;
 const GOOGLE_BOOKS_API_URL = "https://www.googleapis.com/books/v1/volumes";
 
 // API route to search for books
 router.get("/search", async (req: Request, res: Response) => {
   try {
     const { query } = req.query;
+    console.log(
+      // `${GOOGLE_BOOKS_API_URL}?q=${query}&key=${GOOGLE_BOOKS_API_KEY}`
+      `${GOOGLE_BOOKS_API_URL}?q=${query}`
+    );
 
     const response = await axios.get(`${GOOGLE_BOOKS_API_URL}`, {
       params: {
         q: query,
-        key: GOOGLE_BOOKS_API_KEY,
+        // key: GOOGLE_BOOKS_API_KEY,
       },
     });
+    // console.log("response", response);
 
     res.json(response.data.items);
   } catch (error) {
