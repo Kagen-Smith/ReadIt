@@ -10,12 +10,12 @@ const seedAll = async (): Promise<void> => {
 
         await seedUser();
         console.log(`\n------ USERS SEEDED ------\n`);
-
-        await seedReview();
-        console.log(`\n------ REVIEWS SEEDED ------\n`);    
-
+        
         await seedBook();
         console.log(`\n------ BOOKS SEEDED ------\n`);
+
+        await seedReview();
+        console.log(`\n------ REVIEWS SEEDED ------\n`);
         process.exit(0);
     } catch (error) {
         console.log(error);

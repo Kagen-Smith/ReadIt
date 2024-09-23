@@ -1,4 +1,4 @@
-import { Review } from '../models/reviews';
+import { Review } from '../models/reviews.js';
 
 export const seedReview = async () => {
     await Review.bulkCreate([

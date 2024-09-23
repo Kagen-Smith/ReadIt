@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npm i && npm run seed && npm run build && npm run start:dev",
+    "dev": "npm i && cd server && npm run build && npm run seed && cd .. && npm run build && npm run start:dev",
     "start": "npm run client:build && npm run server",
     "start:dev": "concurrently \"npm run server:dev\" \"wait-on tcp:3001 && npm run client:dev\"",
     "server": "cd server && npm start",
@@ -26,6 +26,7 @@
     "typescript": "^5.6.2"
   },
   "devDependencies": {
+    "@types/node": "^22.6.0",
     "concurrently": "^9.0.1",
     "nodemon": "^3.1.7",
     "wait-on": "^8.0.1"
