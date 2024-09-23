@@ -52,7 +52,7 @@ export function SearchBar({ setResults }: SearchBarProps) {
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       handleSearch();
     }
@@ -65,15 +65,10 @@ export function SearchBar({ setResults }: SearchBarProps) {
         className="form-control"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        onKeyDown={handleKeyDown}
+        onKeyUp={handleKeyUp}
         placeholder="Start your journey here..."
       />
-      <button
-        onClick={handleSearch}
-        // onKeyUp={handleSearch}
-        className="btn btn-primary"
-        type="button"
-      >
+      <button onClick={handleSearch} className="btn btn-primary" type="button">
         Search
       </button>
     </div>
