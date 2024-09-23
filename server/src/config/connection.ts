@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import { Sequelize } from 'sequelize';
-import { User } from '../models/user.js';
+import { UserFactory } from '../models/user.js'; // Import the factory function
 
 const sequelize = process.env.DB_URL
   ? new Sequelize(process.env.DB_URL)
@@ -13,5 +13,17 @@ const sequelize = process.env.DB_URL
         decimalNumbers: true,
       },
     });
+
+// Initialize User model
+const User = UserFactory(sequelize);
+
+// Sync the database (consider using { force: true } during development to drop and recreate tables)
+sequelize.sync()
+  .then(() => {
+    console.log('Database synchronized');
+  })
+  .catch(error => {
+    console.error('Error synchronizing database:', error);
+  });
 
 export { sequelize, User };
