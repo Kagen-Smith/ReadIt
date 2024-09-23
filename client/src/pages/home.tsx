@@ -2,10 +2,11 @@ import Logo from "../assets/logoOnly.png";
 import { SearchBar } from "../components/SearchBar";
 import { SearchResultsList } from "../components/SearchResultsList";
 import { useState } from "react";
+import { BookData } from "../interfaces/bookData"; // Import BookData interface
 
 export default function Home() {
-  // Define state to hold search results
-  const [results, setResults] = useState<string[]>([]);
+  // Define state to hold search results as an array of BookData objects
+  const [results, setResults] = useState<BookData[]>([]);
 
   return (
     <main className="container">
@@ -13,16 +14,6 @@ export default function Home() {
         <section className="d-flex flex-column align-items-center text-center">
           <h2>Find, Organize, and Never Lose Track of a Book Again!</h2>
           <img src={Logo} alt="logo" className="my-3" />
-          {/* <div className="input-group my-2" style={{ maxWidth: "400px" }}>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Start your journey here..."
-            />
-            <button className="btn btn-primary" type="button">
-              Search
-            </button>
-          </div> */}
           {/* Pass setResults to SearchBar */}
           <SearchBar setResults={setResults} />
           {/* Pass the results to SearchResultsList */}

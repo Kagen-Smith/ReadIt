@@ -1,49 +1,48 @@
+/* Import Bootstrap's CSS for prebuilt styles and components */
 @import "bootstrap/dist/css/bootstrap.min.css";
 
+/* Define custom CSS variables for fonts, colors, and background */
 :root {
-  --myFont: "Comfortaa", sans-serif;
-  --darkFontColor: #1b2541;
-  --lightFontColor: #e7e5d0;
-  --lightBackground: #f1f0e4;
+  --myFont: "Comfortaa", sans-serif; /* Custom font for headings */
+  --darkFontColor: #1b2541; /* Dark font color for headings */
+  --lightFontColor: #e7e5d0; /* Light font color for buttons */
+  --lightBackground: #f1f0e4; /* Light background color for the footer */
 }
 
+/* Styles for all heading elements (h1-h6) */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: var(--myFont);
-  font-weight: 550;
-  color: var(--darkFontColor);
+  font-family: var(--myFont); /* Use custom font for all headings */
+  font-weight: 550; /* Semi-bold font weight */
+  color: var(--darkFontColor); /* Use dark font color */
 }
 
-.bg-header {
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0.9),
-    rgba(231, 229, 208, 0.9)
-  );
-  /* url("./assets/BooksBackground.jpg"); */
-  /* background-size: cover;
-  background-position: center; */
-}
-
+/* Styles for navigation links with a subtle glowing text effect */
 .nav-link {
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.8),
-    0 0 10px rgba(255, 255, 255, 0.6), 0 0 15px rgba(255, 255, 255, 0.4);
+    /* First layer of glow */ 0 0 10px rgba(255, 255, 255, 0.6),
+    /* Second layer */ 0 0 15px rgba(255, 255, 255, 0.4); /* Final layer */
 }
 
+/* Main content section background color */
 main {
-  background-color: white;
+  background-color: white; /* White background for the main content area */
 }
 
+/* Footer background color */
 footer {
-  background-color: var(--lightBackground);
+  background-color: var(
+    --lightBackground
+  ); /* Use the light background color defined in the root */
 }
 
+/* Custom styles for primary buttons */
 .btn-primary {
-  font-family: var(--myFont);
-  color: var(--lightFontColor);
-  background-color: #1b2541;
+  font-family: var(--myFont); /* Use custom font for button text */
+  color: var(--lightFontColor); /* Light font color */
+  background-color: #1b2541; /* Dark background color for the button */
 }

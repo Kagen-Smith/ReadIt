@@ -95,12 +95,14 @@ const Navbar = () => {
         className="container-fluid"
         style={{ position: "relative", zIndex: 2 }}
       >
-        <img
-          className="navbar-brand"
-          src={NavLogo}
-          alt="ReadIt Logo"
-          style={{ maxHeight: "145px" }}
-        />
+        <Link to="/">
+          <img
+            className="navbar-brand"
+            src={NavLogo}
+            alt="ReadIt Logo"
+            style={{ maxHeight: "145px" }}
+          />
+        </Link>
 
         <button
           className="navbar-toggler"
@@ -115,11 +117,6 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="mainMenu">
           <ul className="navbar-nav ms-auto mb-2 mb-xl-0 h3">
-            <li className="nav-item">
-              <Link to="/" className="nav-link">
-                Home
-              </Link>
-            </li>
             <li className="nav-item">
               <Link to="/UserPage" className="nav-link">
                 My Account
