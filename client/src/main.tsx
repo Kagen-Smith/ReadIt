@@ -27,19 +27,19 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "login", // Route for the login page
+        path: "/login", // Route for the login page
         element: <Login />,
       },
       {
-        path: "userPage", // Route for the user profile page
+        path: "/userPage", // Route for the user profile page
         element: <UserPage />,
       },
       {
-        path: "search", // Route for the search results page
+        path: "/search", // Route for the search results page
         element: <SearchResultsPage />,
       },
       {
-        path: "book/:id", // Route for the book details page
+        path: "/book/:id", // Route for the book details page
         element: <BookPage />,
       },
       {
