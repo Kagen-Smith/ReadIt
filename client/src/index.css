@@ -6,7 +6,9 @@
   --myFont: "Comfortaa", sans-serif; /* Custom font for headings */
   --darkFontColor: #1b2541; /* Dark font color for headings */
   --lightFontColor: #e7e5d0; /* Light font color for buttons */
+  --darkBackground: #1b2541; /* Dark background color for the header */
   --lightBackground: #f1f0e4; /* Light background color for the footer */
+  --green: #748067; /* Green color */
 }
 
 .light-background {
@@ -53,5 +55,61 @@ footer {
 .btn-primary {
   font-family: var(--myFont); /* Use custom font for button text */
   color: var(--lightFontColor); /* Light font color */
-  background-color: #1b2541; /* Dark background color for the button */
+  background-color: var(
+    --darkBackground
+  ); /* Dark background color for the button */
+  border-color: var(
+    --lightBackground
+  ); /* Light background color for the border */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+.btn-primary:hover {
+  background-color: var(
+    --lightBackground
+  ); /* Change background color on hover */
+  color: var(--darkFontColor); /* Change font color on hover */
+  border-color: var(
+    --darkBackground
+  ); /* Light background color for the border */
+}
+
+/* Custom styles for secondary buttons */
+.btn-secondary {
+  font-family: var(--myFont); /* Use custom font for button text */
+  color: var(--darkFontColor); /* Dark font color */
+  background-color: var(--lightBackground); /* Light background color */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+.btn-secondary:hover {
+  background-color: var(
+    --darkBackground
+  ); /* Change background color on hover */
+  color: var(--lightFontColor); /* Change font color on hover */
+}
+
+/* Custom styles for danger (remove) buttons */
+.btn-danger {
+  font-family: var(--myFont); /* Use custom font for button text */
+  color: var(--lightFontColor); /* Light font color */
+  background-color: var(--green); /* Green background color for the button */
+  border-color: var(
+    --lightBackground
+  ); /* Light background color for the border */
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease; /* Smooth transition */
+}
+
+/* Optional hover styles */
+.btn-danger:hover {
+  background-color: var(
+    --lightBackground
+  ); /* Change background color on hover */
+  color: var(--green); /* Change font color on hover */
+  border-color: var(--green); /* Change border color on hover */
+}
+
+.text-primary {
+  color: var(--darkFontColor);
 }

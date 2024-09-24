@@ -1,27 +1,3 @@
-/**
- * BookPage component displays detailed information about a selected book.
- * It retrieves the book data from the location state and displays various details
- * such as title, author, genre, description, publication date, and thumbnail.
- * If the user is logged in, it provides options to add the book to the bookshelf
- * or bookmarks.
- *
- * @component
- * @returns {JSX.Element} The rendered component displaying book details.
- *
- * @example
- * // Example usage:
- * // <Route path="/bookPage" element={<BookPage />} />
- *
- * @remarks
- * This component uses React Router's `useLocation` to access the book data passed
- * via the location state and `useNavigate` to navigate to the user page.
- *
- * @requires useLocation
- * @requires useNavigate
- * @requires BookData
- * @requires auth
- */
-
 import { useLocation, useNavigate } from "react-router-dom";
 import { BookData } from "../interfaces/bookData";
 import auth from "../utils/auth";
@@ -37,20 +13,86 @@ export default function BookPage() {
 
   const { title, author, genre, description, publishedDate, thumbnail } = book;
 
-  const goToUserPage = () => {
+  // Add book to the bookshelf and navigate to /userPage
+  const addToBookshelf = () => {
+    const storedHaveRead = localStorage.getItem("haveRead");
+    const haveRead: BookData[] = storedHaveRead
+      ? JSON.parse(storedHaveRead)
+      : [];
+
+    // Avoid duplicate entries
+    if (!haveRead.find((b) => b.title === title)) {
+      haveRead.push(book);
+      localStorage.setItem("haveRead", JSON.stringify(haveRead));
+      alert(`${title} has been added to your bookshelf!`);
+    }
+
+    // Navigate to userPage after adding the book
     navigate("/userPage");
+  };
+
+  // Add book to bookmarks and navigate to /userPage
+  const addToBookmarks = () => {
+    const storedWantToRead = localStorage.getItem("wantToRead");
+    const wantToRead: BookData[] = storedWantToRead
+      ? JSON.parse(storedWantToRead)
+      : [];
+
+    // Avoid duplicate entries
+    if (!wantToRead.find((b) => b.title === title)) {
+      wantToRead.push(book);
+      localStorage.setItem("wantToRead", JSON.stringify(wantToRead));
+      alert(`${title} has been added to your bookmarks!`);
+    }
+
+    // Navigate to userPage after adding the book
+    navigate("/userPage");
+  };
+
+  // Navigate back to search results
+  const returnToSearchResults = () => {
+    navigate(-1); // This navigates to the previous page
   };
 
   return (
     <div className="container">
+      <div className="mt-3">
+        <p
+          className="text-primary"
+          style={{ cursor: "pointer" }}
+          onClick={returnToSearchResults}
+        >
+          &larr; Return to Search Results
+        </p>
+      </div>
+
       <div className="row">
-        <div className="col-md-4 d-flex justify-content-center align-items-center mb-4">
+        <div className="col-md-4 d-flex flex-column justify-content-center align-items-center mb-4">
           <img
             src={thumbnail || "path_to_default_thumbnail_image"}
             alt={title || "Book Cover"}
-            className="img-fluid"
+            className="img-fluid mb-4"
             style={{ maxHeight: "400px", objectFit: "cover" }}
           />
+
+          {auth.loggedIn() && (
+            <div className="d-flex flex-wrap justify-content-center gap-2">
+              <button
+                className="btn btn-primary mb-2"
+                type="button"
+                onClick={addToBookshelf}
+              >
+                Add to Bookshelf
+              </button>
+              <button
+                className="btn btn-secondary mb-2"
+                type="button"
+                onClick={addToBookmarks}
+              >
+                Add to Bookmarks
+              </button>
+            </div>
+          )}
         </div>
 
         <section className="col-md-8 d-flex flex-column text-start">
@@ -67,28 +109,6 @@ export default function BookPage() {
             <h4>Publication Date:</h4>
             <p>{publishedDate || "Unknown"}</p>
           </div>
-
-          {auth.loggedIn() && (
-            <div
-              className="d-flex justify-content-between mt-4"
-              style={{ width: "100%" }}
-            >
-              <button
-                className="btn btn-primary"
-                type="button"
-                onClick={goToUserPage}
-              >
-                Add to Bookshelf
-              </button>
-              <button
-                className="btn btn-primary"
-                type="button"
-                onClick={goToUserPage}
-              >
-                Add to Bookmarks
-              </button>
-            </div>
-          )}
         </section>
       </div>
     </div>

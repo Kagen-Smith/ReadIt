@@ -1,71 +1,75 @@
 import { useEffect, useState } from "react";
-import Bookmark from "../components/bookmark.js";
-import Bookshelf from "../components/bookshelf.js";
-import { BookData } from "../interfaces/bookData.js";
+import BookList from "../components/booklist";
+import { BookData } from "../interfaces/bookData";
 
 const UserPage = () => {
   const [haveRead, setHaveRead] = useState<BookData[]>([]);
   const [wantToRead, setWantToRead] = useState<BookData[]>([]);
+
   const removeFromStorage = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    currentlyOnShelf: boolean | null | undefined,
-    currentlyReading: boolean | null | undefined,
+    isBookshelf: boolean,
     title: string | null
   ) => {
     e.preventDefault();
-    if  (currentlyOnShelf) {
-      let parsedHaveRead: BookData[] = [];
-
-      const storedhaveRead = localStorage.getItem("haveRead");
-      if (typeof storedhaveRead === "string") {
-        parsedHaveRead = JSON.parse(storedhaveRead);
-      }
-      parsedHaveRead = parsedHaveRead.filter((book: BookData) => book.title !== title);
+    if (isBookshelf) {
+      let parsedHaveRead: BookData[] = JSON.parse(
+        localStorage.getItem("haveRead") || "[]"
+      );
+      parsedHaveRead = parsedHaveRead.filter((book) => book.title !== title);
       setHaveRead(parsedHaveRead);
       localStorage.setItem("haveRead", JSON.stringify(parsedHaveRead));
-    } else if (currentlyReading) {
-      let parsedWantToRead: BookData[] = [];
-
-      const storedWantToRead = localStorage.getItem("wantToRead");
-      if (typeof storedWantToRead === "string") {
-        parsedWantToRead = JSON.parse(storedWantToRead);
-      }
-      parsedWantToRead = parsedWantToRead.filter((book: BookData) => book.title !== title);
+    } else {
+      let parsedWantToRead: BookData[] = JSON.parse(
+        localStorage.getItem("wantToRead") || "[]"
+      );
+      parsedWantToRead = parsedWantToRead.filter(
+        (book) => book.title !== title
+      );
       setWantToRead(parsedWantToRead);
       localStorage.setItem("wantToRead", JSON.stringify(parsedWantToRead));
     }
-  }
+  };
 
   useEffect(() => {
     const storedHaveRead = localStorage.getItem("haveRead");
-    if (typeof storedHaveRead === "string") {
+    if (storedHaveRead) {
       setHaveRead(JSON.parse(storedHaveRead));
     }
 
     const storedWantToRead = localStorage.getItem("wantToRead");
-    if (typeof storedWantToRead === "string") {
+    if (storedWantToRead) {
       setWantToRead(JSON.parse(storedWantToRead));
     }
-  }
-  , []);
-
+  }, []);
 
   return (
     <div className="container">
       <div className="row">
         <section className="col-md-6 d-flex flex-column align-items-center text-center">
           <h2>My Bookshelf</h2>
-          <Bookshelf haveRead={haveRead} removeFromStorage={removeFromStorage} />
+          <p className="text-muted">A collection of books you have read:</p>
+          <BookList
+            books={haveRead}
+            removeFromStorage={removeFromStorage}
+            listLabel="Bookshelf"
+          />
         </section>
 
         <section className="col-md-6 d-flex flex-column align-items-center text-center">
-          <h2>Bookmarks</h2>
-          <Bookmark wantToRead={wantToRead} removeFromStorage={removeFromStorage} />
+          <h2>My Bookmarks</h2>
+          <p className="text-muted">
+            A collection of books you would like to read:
+          </p>
+          <BookList
+            books={wantToRead}
+            removeFromStorage={removeFromStorage}
+            listLabel="Bookmarks"
+          />
         </section>
       </div>
     </div>
   );
-}
+};
 
 export default UserPage;
-
