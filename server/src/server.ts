@@ -20,17 +20,17 @@ const __dirname = path.dirname(__filename);
 
 // Set the port to the value from the environment variable or default to 3001
 const port = process.env.PORT || 3001;
-app.use(express.static(path.join(__dirname, "../client/dist")));
+app.use(express.static(path.join(__dirname, "../../client/dist")));
 
 // Middleware to parse JSON bodies in incoming requests
-app.use(express.json()); // Add this line
+app.use(express.json());
 
 // Use the imported routes in the application
 app.use(routes);
 
 // Wildcard route handler for serving the React app on any route not handled by API routes
 app.get("*", (_req, res) => {
-  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+  res.sendFile(path.join(__dirname, "../../client/dist/index.html"));
 });
 
 // Start the server and listen on the specified port
