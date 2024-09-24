@@ -1,3 +1,39 @@
+/**
+ * Login component for user authentication.
+ *
+ * This component provides a form for users to log in to their account. It includes
+ * fields for email and password, and handles form submission to authenticate the user.
+ *
+ * @component
+ * @example
+ * return (
+ *   <Login />
+ * )
+ *
+ * @returns {JSX.Element} The rendered login form component.
+ *
+ * @remarks
+ * The component uses React hooks for state management and form handling.
+ * It also imports and uses an authentication utility and an API function for login.
+ *
+ * @function
+ * @name Login
+ *
+ * @typedef {Object} LoginData
+ * @property {string} email - The email address entered by the user.
+ * @property {string} password - The password entered by the user.
+ *
+ * @typedef {Object} AuthResponse
+ * @property {string} token - The authentication token returned from the API.
+ *
+ * @requires useState
+ * @requires FormEvent
+ * @requires ChangeEvent
+ * @requires Auth
+ * @requires login
+ * @requires Logo
+ */
+
 import { useState, FormEvent, ChangeEvent } from "react";
 // import { Link } from "react-router-dom";
 import Auth from "../utils/auth.ts";
@@ -83,4 +119,3 @@ const Login = () => {
 };
 
 export default Login;
-//function for logging in
