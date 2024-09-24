@@ -7,7 +7,7 @@
  */
 
 export const bookCovers = async () => {
-  const response = await fetch("/api/book-covers", {
+  const response = await fetch("/api/books/book-covers", {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   });
