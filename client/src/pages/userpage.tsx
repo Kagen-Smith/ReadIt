@@ -5,62 +5,62 @@ import { BookData } from "../interfaces/bookData.js";
 
 const UserPage = () => {
   const [haveRead, setHaveRead] = useState<BookData[]>([]);
+  const [wantToRead, setWantToRead] = useState<BookData[]>([]);
   const removeFromStorage = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     currentlyOnShelf: boolean | null | undefined,
     currentlyReading: boolean | null | undefined,
     title: string | null
-  )  => {
+  ) => {
     e.preventDefault();
-    if (currentlyOnShelf) {
-      console.log(title);
-      let parsedBooks: BookData[] = [];
+    if  (currentlyOnShelf) {
+      let parsedHaveRead: BookData[] = [];
 
-      const storedBooks = localStorage.getItem("haveRead");
-      if (typeof storedBooks === "string") {
-        parsedBooks = JSON.parse(storedBooks);
+      const storedhaveRead = localStorage.getItem("haveRead");
+      if (typeof storedhaveRead === "string") {
+        parsedHaveRead = JSON.parse(storedhaveRead);
       }
-      parsedBooks = parsedBooks.filter((book) => book.title !== title);
-      localStorage.setItem("haveRead", JSON.stringify(parsedBooks));
+      parsedHaveRead = parsedHaveRead.filter((book: BookData) => book.title !== title);
+      setHaveRead(parsedHaveRead);
+      localStorage.setItem("haveRead", JSON.stringify(parsedHaveRead));
     } else if (currentlyReading) {
-      console.log(title);
-      let parsedBooks: BookData[] = [];
+      let parsedWantToRead: BookData[] = [];
 
-      const storedBooks = localStorage.getItem("currentlyReading");
-      if (typeof storedBooks === "string") {
-        parsedBooks = JSON.parse(storedBooks);
+      const storedWantToRead = localStorage.getItem("wantToRead");
+      if (typeof storedWantToRead === "string") {
+        parsedWantToRead = JSON.parse(storedWantToRead);
       }
-      parsedBooks = parsedBooks.filter((book) => book.title !== title);
-      localStorage.setItem("currentlyReading", JSON.stringify(parsedBooks));
+      parsedWantToRead = parsedWantToRead.filter((book: BookData) => book.title !== title);
+      setWantToRead(parsedWantToRead);
+      localStorage.setItem("wantToRead", JSON.stringify(parsedWantToRead));
     }
   }
-  useEffect(() => {
-    let parsedBooks: BookData[] = [];
 
-    const storedBooks = localStorage.getItem("haveRead");
-    if (typeof storedBooks === "string") {
-      parsedBooks = JSON.parse(storedBooks);
+  useEffect(() => {
+    const storedHaveRead = localStorage.getItem("haveRead");
+    if (typeof storedHaveRead === "string") {
+      setHaveRead(JSON.parse(storedHaveRead));
     }
-    setHaveRead(parsedBooks);
-  }, []);
+
+    const storedWantToRead = localStorage.getItem("wantToRead");
+    if (typeof storedWantToRead === "string") {
+      setWantToRead(JSON.parse(storedWantToRead));
+    }
+  }
+  , []);
+
+
   return (
     <div className="container">
       <div className="row">
         <section className="col-md-6 d-flex flex-column align-items-center text-center">
           <h2>My Bookshelf</h2>
-          <Bookshelf wantToRead={haveRead} removeFromStorage={removeFromStorage} />
+          <Bookshelf haveRead={haveRead} removeFromStorage={removeFromStorage} />
         </section>
 
         <section className="col-md-6 d-flex flex-column align-items-center text-center">
           <h2>Bookmarks</h2>
-          <button className="btn btn-secondary mb-4" type="submit">
-            View Bookmarks
-          </button>
-          <ul className="list-group w-100">
-            <li className="list-group-item">Bookmarked Book 1</li>
-            <li className="list-group-item">Bookmarked Book 2</li>
-            <li className="list-group-item">Bookmarked Book 3</li>
-          </ul>
+          <Bookmark wantToRead={wantToRead} removeFromStorage={removeFromStorage} />
         </section>
       </div>
     </div>
