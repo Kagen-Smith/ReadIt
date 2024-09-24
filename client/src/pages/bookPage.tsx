@@ -1,33 +1,43 @@
+import { useLocation } from "react-router-dom";
+import { BookData } from "../interfaces/bookData";
+
 export default function BookPage() {
+  const location = useLocation();
+  const book: BookData | undefined = location.state?.book;
+
+  if (!book) {
+    return <p>Loading book details...</p>;
+  }
+
+  const { title, author, genre, description, publishedDate, thumbnail } = book;
+
   return (
-    <main className="container">
+    <div className="container">
       <div className="row">
-        {/* Book Cover */}
         <aside className="col-md-5">
           <section className="d-flex justify-content-center align-items-center">
             <img
-              src="path_to_book_cover_image"
-              alt="Book Cover"
+              src={thumbnail || "path_to_default_thumbnail_image"}
+              alt={title || "Book Cover"}
               className="img-fluid"
               style={{ maxHeight: "400px" }}
             />
           </section>
         </aside>
 
-        {/* Book Information */}
         <section className="col-md-7 d-flex flex-column align-items-center text-center">
           <h2>Book Info:</h2>
           <div className="text-start" style={{ width: "100%" }}>
             <h4>Title:</h4>
-            <p>Book Title</p>
+            <p>{title || "Unknown Title"}</p>
             <h4>Author:</h4>
-            <p>Author Name</p>
+            <p>{author || "Unknown Author"}</p>
             <h4>Genre:</h4>
-            <p>Genre Info</p>
+            <p>{genre || "Unknown Genre"}</p>
             <h4>Synopsis:</h4>
-            <p>Here is a brief synopsis of the book...</p>
+            <p>{description || "No description available."}</p>
             <h4>Publication Date:</h4>
-            <p>Publication Date Info</p>
+            <p>{publishedDate || "Unknown"}</p>
           </div>
           <div
             className="d-flex justify-content-between mt-4"
@@ -42,6 +52,6 @@ export default function BookPage() {
           </div>
         </section>
       </div>
-    </main>
+    </div>
   );
 }

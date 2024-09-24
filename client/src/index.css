@@ -9,6 +9,10 @@
   --lightBackground: #f1f0e4; /* Light background color for the footer */
 }
 
+.light-background {
+  background-color: var(--lightBackground);
+}
+
 /* Styles for all heading elements (h1-h6) */
 h1,
 h2,

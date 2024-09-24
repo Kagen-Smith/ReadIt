@@ -1,6 +1,6 @@
 export default function UserPage() {
   return (
-    <main className="container">
+    <div className="container">
       <div className="row">
         <section className="col-md-6 d-flex flex-column align-items-center text-center">
           <h2>My Bookshelf</h2>
@@ -26,6 +26,6 @@ export default function UserPage() {
           </ul>
         </section>
       </div>
-    </main>
+    </div>
   );
 }
