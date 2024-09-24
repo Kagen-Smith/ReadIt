@@ -1,12 +1,16 @@
-// import { Router } from "express";
+// Import express framework
 import express from "express";
-import { login, getProfile } from "./auth-Jwt.js"; // Import the controller functions
-import { verifyToken } from "../middleware/jwtMiddleware.js"; // Import JWT middleware
+// Import controller functions for authentication
+import { login, getProfile } from "./auth-Jwt.js"; 
+// Import middleware for verifying JWT tokens
+import { verifyToken } from "../middleware/jwtMiddleware.js"; 
 
-const router = express.Router();
+const router = express.Router(); // Create a new Router instance
 
-router.post("/login", login);
+// Route for user login
+router.post("/login", login); // Handle POST requests to /login with the login function
 
-router.get("/profile", verifyToken, getProfile);
+// Route for getting user profile, protected by JWT verification
+router.get("/profile", verifyToken, getProfile); // Handle GET requests to /profile with JWT verification
 
-export default router;
+export default router; // Export the configured router

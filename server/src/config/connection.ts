@@ -1,29 +1,20 @@
-import dotenv from 'dotenv';
-dotenv.config();
+import dotenv from 'dotenv'; // Import dotenv to load environment variables
+dotenv.config(); // Load environment variables from .env file
 
-import { Sequelize } from 'sequelize';
-import { UserFactory } from '../models/user.js'; // Import the factory function
+import { sequelize } from '../models/index.js'; // Import the Sequelize instance
+import { UserFactory } from '../models/user.js'; // Import the User model factory function
 
-const sequelize = process.env.DB_URL
-  ? new Sequelize(process.env.DB_URL)
-  : new Sequelize(process.env.DB_NAME || '', process.env.DB_USER || '', process.env.DB_PASSWORD || '', {
-      host: 'localhost',
-      dialect: 'postgres',
-      dialectOptions: {
-        decimalNumbers: true,
-      },
-    });
-
-// Initialize User model
+// Initialize User model using the Sequelize instance
 const User = UserFactory(sequelize);
 
-// Sync the database (consider using { force: true } during development to drop and recreate tables)
+// Sync the database
 sequelize.sync()
   .then(() => {
-    console.log('Database synchronized');
+    console.log('Database synchronized'); // Log success message
   })
   .catch(error => {
-    console.error('Error synchronizing database:', error);
+    console.error('Error synchronizing database:', error); // Log any errors that occur during synchronization
   });
 
+// Export the sequelize instance and User model for use in other modules
 export { sequelize, User };
