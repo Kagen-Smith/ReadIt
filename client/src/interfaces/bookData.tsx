@@ -1,5 +1,5 @@
 import { UserData } from "./userData";
-import { ReviewData } from "./reviewData";
+
 
 export interface BookData {
   id: string; // Google Books uses string IDs, not numbers
@@ -9,7 +9,6 @@ export interface BookData {
   description: string | null; // Book description (synopsis)
   publishedDate: string | null; // Publication date
   thumbnail: string | null; // URL for the book cover thumbnail
-  reviews: ReviewData[] | null;
   assignedUserId: number | null;
   assignedUser: UserData | null;
 }
