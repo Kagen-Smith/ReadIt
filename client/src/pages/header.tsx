@@ -1,7 +1,18 @@
+/**
+ * Header component that includes a Navbar and a SearchBar.
+ *
+ * @returns {JSX.Element} The rendered header component.
+ *
+ * @component
+ * @example
+ * return (
+ *   <Header />
+ * )
+ */
+
 import Navbar from "../components/navbar.tsx";
 import { SearchBar } from "../components/SearchBar";
 
-// Header for the page
 export default function Header() {
   return (
     <header>

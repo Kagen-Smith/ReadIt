@@ -1,3 +1,14 @@
+/**
+ * Home component renders the main landing page of the application.
+ * It includes a header, a logo, and a search bar for users to find books.
+ *
+ * @component
+ * @example
+ * return (
+ *   <Home />
+ * )
+ */
+
 import Logo from "../assets/logoOnly.png";
 import { SearchBar } from "../components/SearchBar";
 

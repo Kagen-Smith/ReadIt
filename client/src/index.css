@@ -25,6 +25,11 @@ h6 {
   color: var(--darkFontColor); /* Use dark font color */
 }
 
+p {
+  font-family: var(--myFont); /* Use custom font for paragraph text */
+  color: var(--darkFontColor);
+}
+
 /* Styles for navigation links with a subtle glowing text effect */
 .nav-link {
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.8),
