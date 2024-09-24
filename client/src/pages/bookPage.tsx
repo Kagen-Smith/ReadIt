@@ -1,11 +1,17 @@
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { BookData } from "../interfaces/bookData";
+import AlertModal from "../components/alertModal";
 import auth from "../utils/auth";
 
 export default function BookPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const book: BookData | undefined = location.state?.book;
+  const [showAlert, setShowAlert] = useState({
+    show: false,
+    message: "",
+  });
 
   if (!book) {
     return <p>Loading book details...</p>;
@@ -24,10 +30,22 @@ export default function BookPage() {
     if (!haveRead.find((b) => b.title === title)) {
       haveRead.push(book);
       localStorage.setItem("haveRead", JSON.stringify(haveRead));
-      alert(`${title} has been added to your bookshelf!`);
+      setShowAlert({
+        show: true,
+        message: "Added to my Bookshelf",
+      });
+      // alert(`${title} has been added to your bookshelf!`);
+    } else {
+      // Navigate to userPage if it is already in the list
+      navigate("/userPage");
     }
+  };
 
-    // Navigate to userPage after adding the book
+  const closeModal = () => {
+    setShowAlert({
+      show: false,
+      message: "",
+    });
     navigate("/userPage");
   };
 
@@ -42,20 +60,33 @@ export default function BookPage() {
     if (!wantToRead.find((b) => b.title === title)) {
       wantToRead.push(book);
       localStorage.setItem("wantToRead", JSON.stringify(wantToRead));
-      alert(`${title} has been added to your bookmarks!`);
+      setShowAlert({
+        show: true,
+        message: "Added to My Bookmarks",
+      });
+      // alert(`${title} has been added to your bookmarks!`);
+    } else {
+      // Navigate to userPage after adding the book
+      navigate("/userPage");
     }
-
-    // Navigate to userPage after adding the book
-    navigate("/userPage");
   };
 
   // Navigate back to search results
   const returnToSearchResults = () => {
-    navigate(-1); // This navigates to the previous page
+    const url = localStorage.getItem("queryURL") || "/";
+    navigate(url); // This navigates to the previous page
   };
 
   return (
     <div className="container">
+      {showAlert.show && (
+        <AlertModal
+          title={title}
+          message={showAlert.message}
+          closeModal={closeModal}
+          returnToSearchResults={returnToSearchResults}
+        />
+      )}
       <div className="mt-3">
         <p
           className="text-primary"

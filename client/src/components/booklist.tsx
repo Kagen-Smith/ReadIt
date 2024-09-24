@@ -20,7 +20,7 @@ export default function BookList({
 
   // Function to handle navigation to the book details page
   const goToBookDetails = (book: BookData) => {
-    navigate(`/book/${book.id}`, { state: { book } }); // Navigate to BookPage with the book data
+    navigate(`/shelf/book/${book.id}`, { state: { book } }); // Navigate to BookPage with the book data
   };
 
   if (books.length === 0) {

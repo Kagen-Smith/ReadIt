@@ -47,8 +47,9 @@ export function SearchBar() {
 
   const handleSearch = () => {
     if (!query.trim()) return;
-
-    navigate(`/search?query=${encodeURIComponent(query)}`);
+    const url = `/search?query=${encodeURIComponent(query)}`;
+    localStorage.setItem("queryURL", url);
+    navigate(url);
   };
 
   const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
