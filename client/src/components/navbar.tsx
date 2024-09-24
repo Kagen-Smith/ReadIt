@@ -1,3 +1,30 @@
+/**
+ * Navbar component that displays a navigation bar with a logo, background images, and links.
+ * The background images are shuffled and fetched from local storage or an API.
+ * The component also checks the login status and displays appropriate links based on the user's authentication state.
+ *
+ * @component
+ * @example
+ * return (
+ *   <Navbar />
+ * )
+ *
+ * @returns {JSX.Element} The rendered Navbar component.
+ *
+ * @remarks
+ * - Uses `useState` and `useEffect` hooks for state management and side effects.
+ * - Uses `useLocation` hook to detect route changes and reshuffle images.
+ * - Fetches book cover images from local storage or an API and shuffles them.
+ * - Checks user login status and displays different links based on authentication.
+ *
+ * @dependencies
+ * - `react`
+ * - `react-router-dom`
+ * - `../assets/navLogo.png`
+ * - `../utils/auth`
+ * - `../api/nytAPI`
+ */
+
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import NavLogo from "../assets/navLogo.png";
@@ -121,17 +148,24 @@ const Navbar = () => {
                 </Link>
               </li>
             ) : (
-              <li className="nav-item">
-                <Link
-                  to="/"
-                  className="nav-link"
-                  onClick={() => {
-                    auth.logout();
-                  }}
-                >
-                  Logout
-                </Link>
-              </li>
+              <>
+                <li className="nav-item">
+                  <Link to="/userPage" className="nav-link">
+                    My Account
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    to="/"
+                    className="nav-link"
+                    onClick={() => {
+                      auth.logout();
+                    }}
+                  >
+                    Logout
+                  </Link>
+                </li>
+              </>
             )}
           </ul>
         </div>
