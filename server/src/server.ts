@@ -12,7 +12,7 @@ dotenv.config();
 const app = express();
 // Set the port to the value from the environment variable or default to 3001
 const port = process.env.PORT || 3001;
-
+app.use(express.static("../client/dist"))
 // Middleware to parse JSON bodies in incoming requests
 app.use(express.json()); // Add this line
 
