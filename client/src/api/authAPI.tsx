@@ -1,6 +1,6 @@
 import { UserLogin } from "../interfaces/userLogin.tsx";
 
-const login = async (userInfo: UserLogin) => {
+export const login = async (userInfo: UserLogin) => {
   console.log(userInfo); // Check if it has username and password
   const response = await fetch("/auth/login", {
     method: "POST",
@@ -16,5 +16,5 @@ const login = async (userInfo: UserLogin) => {
   return data;
 };
 
-export { login };
+// export { login };
 // auth api

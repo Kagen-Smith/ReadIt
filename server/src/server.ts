@@ -1,7 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
 import routes from "./routes/index.js";
-// import bookRoutes from "./routes/api/book-routes.js";
 
 dotenv.config();
 
