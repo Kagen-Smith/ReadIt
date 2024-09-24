@@ -48,10 +48,7 @@ const Navbar = () => {
   }, [location, initialImages]);
 
   return (
-    <div
-      className="navbar navbar-expand-lg mb-5 shadow"
-      style={{ position: "relative" }}
-    >
+    <div className="navbar navbar-expand-lg" style={{ position: "relative" }}>
       <div
         className="d-flex flex-row"
         style={{
@@ -117,21 +114,10 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="mainMenu">
           <ul className="navbar-nav ms-auto mb-2 mb-xl-0 h3">
-            <li className="nav-item">
-              <Link to="/UserPage" className="nav-link">
-                My Account
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/BookPage" className="nav-link">
-                Book Page
-              </Link>
-            </li>
-
             {!loginCheck ? (
               <li className="nav-item">
                 <Link to="/login" className="nav-link">
-                  Login
+                  My Account
                 </Link>
               </li>
             ) : (

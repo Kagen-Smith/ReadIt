@@ -1,5 +1,5 @@
 import { useState, FormEvent, ChangeEvent } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Auth from "../utils/auth.ts";
 import { login } from "../api/authAPI.tsx";
 import Logo from "../assets/logoOnly.png";
@@ -72,9 +72,9 @@ const Login = () => {
               Submit
             </button>
 
-            <Link to="/create-account" className="btn btn-secondary w-100">
+            {/* <Link to="/create-account" className="btn btn-secondary w-100">
               Create Account
-            </Link>
+            </Link> */}
           </form>
         </section>
       </div>

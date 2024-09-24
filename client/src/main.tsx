@@ -13,6 +13,7 @@ import Home from "./pages/home.tsx";
 import Login from "./pages/login.tsx";
 import UserPage from "./pages/userpage.tsx";
 import BookPage from "./pages/bookPage.tsx";
+import SearchResultsPage from "./pages/searchResults.tsx";
 
 // Define the routes for the application using createBrowserRouter
 const router = createBrowserRouter([
@@ -34,7 +35,11 @@ const router = createBrowserRouter([
         element: <UserPage />,
       },
       {
-        path: "bookPage", // Route for the book details page
+        path: "search", // Route for the search results page
+        element: <SearchResultsPage />,
+      },
+      {
+        path: "book/:id", // Route for the book details page
         element: <BookPage />,
       },
       {
