@@ -10,9 +10,11 @@
 
 ## Description
 
-[Visit the Deployed Website]()
+ReadIt! is a full-stack web application designed to help users find books, log them into their personal bookshelves, write reviews, and create booklists. Users can follow others and see their reading activity, building a community around their reading experiences.
 
-![Website](https://img.shields.io/website?url=https%3A%2F%2Ftemptag.github.io%2FYes-Chef%2F&up_message=Online&up_color=green&down_message=Offline&down_color=red)
+[Visit the Deployed Website](https://readit-pngn.onrender.com/)
+
+![ReadIt Home Page Screenshot](./client/src/assets/ReadItScreenshot.jpg)
 
 ## Table of Contents
 
@@ -26,6 +28,14 @@
 ---
 
 ## Technologies Used
+
+- **Frontend**: React.js, JavaScript, CSS, HTML
+- **Backend**: Node.js, Express.js, PostgreSQL
+- **APIs**: Google Books API, New York Times API
+- **Authentication**: JWT (JSON Web Tokens)
+- **Deployment**: Render
+- **Version Control**: Git, GitHub
+- **Other Tools**: TypeScript, Sequelize ORM
 
 ---
 
@@ -61,7 +71,8 @@ npm install
 4. Create an .env file in the root directory and add your Google Book and New York Times API keys:
 
 ```bash
-UPDATE
+GOOGLE_BOOKS_API_KEY=your_google_books_api_key
+NYT_API_KEY=your_nyt_api_key
 ```
 
 5. Start the development server:
@@ -73,6 +84,13 @@ npm start
 ---
 
 ## Usage
+
+Once the application is running, navigate to http://localhost:10000 in your browser to access the web app. From there, you can:
+
+    •	Search for books using the Google Books API.
+    •	Add books to your bookshelf or bookmark them for future reading.
+    •	Write reviews, rate books, and create booklists.
+    •	Follow other users to see their book activity.
 
 ---
 
@@ -90,7 +108,7 @@ npm start
 
 ## Questions
 
-Hit us up individually at the links above!
+If you have any questions or need help, feel free to reach out to any of the contributors via the emails and LinkedIn profiles provided above.
 
 ---
 
